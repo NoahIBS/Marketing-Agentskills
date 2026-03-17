@@ -1,0 +1,841 @@
+# Engagement Studio
+
+# Implementation Guide
+
+Salesforce, Spring ’ 26
+
+```
+Last updated: November 17, 2025
+```
+
+© Copyright 2000–2026 Salesforce, Inc. All rights reserved. Salesforce is a registered trademark of Salesforce, Inc., as are other
+
+```
+names and marks. Other marks appearing herein may be trademarks of their respective owners.
+```
+
+## CONTENTS
+
+- Nurture Leads with Engagement Studio
+- Considerations for Using Engagement Studio
+- How Engagement Studio Works
+   - Engagement Studio Overview
+   - Engagement Program Steps
+   - How Wait Periods Work in Engagement Programs
+   - Engagement Studio FAQ
+- Build Engagement Studio Programs
+   - Create Engagement Programs
+   - Add Steps to an Engagement Program
+   - Test and Start Engagement Programs
+   - Edit Engagement Programs
+   - Let Prospects Repeat Engagement Programs
+- Engagement Program Reporting
+- Tips, Tricks, and Next Steps
+
+
+
+## Nurture Leads with Engagement Studio
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+Engagement Studio programs are completely customizable so you can tailor the prospect experience
+to generate the most promising leads for your sales team. Build, test, and report on powerful
+engagement programs that let you target prospects based on behavior and critical qualifying values.
+Provide a personalized experience for your prospects, and turn them into marketing-qualified leads.
+
+```
+Note: Prefer a different style of learning? Check out resources like Trailhead modules and
+expert coaching.
+```
+**-** Trailmix: How to use Engagement Studio
+**-** Trailmix: How to use Automation Tools
+
+## Considerations for Using Engagement Studio
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+When working with Engagement Studio programs, keep these considerations in mind.
+
+**-** Your edition determines how many engagement programs can run at one time.
+    **-** Account Engagement **Growth** Edition: Up to 20 total engagement programs and up to 10
+       repeating programs.
+    **-** Account Engagement **Plus** Edition: Up to 100 total engagement programs and up to 10
+       repeating programs.
+    **-** Account Engagement **Advanced** Edition Edition: Up to 200 total engagement programs and up to 10 repeating programs.
+    **-** Account Engagement **Premium** Edition Edition: Up to 200 total engagement programs and up to 15 repeating programs.
+**-** For best performance, limit your program to fewer than 300 steps.
+**-** Engagement programs are considered inactive when no new prospects are added or moving through the program for 30 days. To
+    view inactive programs, use the filter on the engagement program list view.
+**-** To target prospects who fill out a form embedded on a landing page, use a landing page trigger step.
+**-** Engagement Studio doesn’t allow more than one prospect with the same email address in a single program. This limitation is in
+    place to avoid sending the same email to a single address multiple times.
+**-** A single rule step can evaluate up to five conditions.
+**-** Steps in engagement programs don’t share or inherit settings. For example, if you have a Send Email action and an Email Open
+    trigger for the same email, select the email on each step.
+**-** Only one user can edit an engagement program at a time. If you want to access a program that’s locked for editing, contact the user
+    editing the program or ask your Account Engagement admin to end the editing session. Engagement programs that are locked for
+    editing are released after 15 minutes of inactivity.
+**-** To ensure a prospect receives the email from an email send step, avoid adding subsequent actions that change their mailability
+    status.
+
+
+## How Engagement Studio Works
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+Engagement Studio programs consist of conditional steps that define the prospect journey. You
+choose which recipient lists you want to use for a program, build your program according to your
+marketing plan, and then let Engagement Studio do the heavy lifting for you. Engagement programs
+can be paused or edited at any time.
+```
+### Engagement Studio Overview
+
+```
+EDITIONS
+```
+```
+Available in:All Account
+Engagement Editions
+```
+```
+Engagement Studio is a robust lead nurturing tool in Account Engagement, which you can adapt
+to your needs. Here’s an overview of how engagement programs work and how to work with them.
+```
+```
+Recipients
+When starting a new program, you fill in basic program information and select at least one recipient
+list. You can use multiple lists with a single engagement program. When you add new prospects to a program recipient list, they start
+the program from the beginning. You can add new prospects to the program at any time without affecting other prospects in the
+program.
+```
+```
+Step Types
+There are three types of steps available in engagement programs:
+```
+**- Triggers:**
+    wait for prospect actions.
+**- Rules:**
+    define paths based on prospect criteria.
+**- Actions:**
+    do something to prospect records.
+
+```
+Wait Periods
+When you add or edit a program step, you can hold prospects there for a specific time period before moving them to the next step. On
+trigger steps, you can instead choose to hold prospects for a maximum time period Holding for a maximum time period means that if
+the trigger occurs, the prospect moves to the next step immediately.
+```
+```
+Pausing and Editing Programs
+You can pause or make changes to your engagement programs at any time. Programs must be paused before you edit them. Changes
+to steps only affect prospects who land on those steps in the future. If a prospect is waiting on a step when a program is paused, the
+wait period is paused as well. When the program resumes, the prospect finishes the wait they’re on before moving to the next step.
+Only one user can edit an engagement program at a time. If you want to access a program that’s locked for editing, contact the user
+editing the program or ask your Account Engagement admin to end the editing session. Engagement programs that are locked for
+editing are released after 15 minutes of inactivity.
+```
+Nurture Leads with Engagement Studio How Engagement Studio Works
+
+
+```
+Versioning
+Engagement programs have built-in version control. When a user pauses and restarts a program, Account Engagement saves a version
+of the program from before the pause. Versions can help you see the impact of small changes to your programs so you can evolve your
+marketing strategy accordingly.
+```
+### Engagement Program Steps
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+Engagement programs are made up of steps that serve different purposes. There are three basic
+types of steps: trigger steps, rule steps, and action steps.
+```
+Engagement Program Triggers
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+In an engagement program, use trigger steps to define paths based on prospect actions.
+```
+Trigger Definitions
+
+```
+Trigger What It Does
+```
+```
+Email Open Checks for an HTML email open.
+```
+```
+Checks for link clicks in an email. Choose to
+trigger on a specific link or any link.
+```
+```
+Email Link Click
+```
+```
+Checks for a specific prospect activity that occurs
+in a third-party app. This trigger requires
+```
+```
+External Activity
+```
+```
+Marketing App Extensions to be configured in
+Salesforce Marketing Setup.
+```
+```
+Checks for a form view or submission. Choose
+to trigger on a specific form or any form. To
+```
+```
+Form
+```
+```
+trigger by forms on an Account Engagement
+landing page, use the Landing Page trigger.
+```
+```
+Checks for a landing page submission. Choose
+to trigger on a specific landing page or any
+landing page.
+```
+```
+Landing Page
+```
+Nurture Leads with Engagement Studio Engagement Program Steps
+
+
+```
+Trigger What It Does
+```
+```
+Checks for a custom redirect click. Choose to trigger on a specific
+custom redirect or any custom redirect.
+```
+```
+Custom Redirect Click
+```
+```
+Checks for download of non-image, hosted content files. Choose
+to trigger on a specific file or any file.
+```
+```
+File Download
+```
+Engagement Program Rules
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+In an engagement program, rule steps define criteria-based paths for prospects. A single rule step
+can evaluate up to five conditions.
+Pardot is now known as Marketing Cloud Account Engagement. We wish we could snap our fingers
+to update the name everywhere, but you can expect to see the previous name in a few places until
+we replace it, including in the app itself.
+```
+Rule Definitions
+
+```
+Rule Path Based On
+```
+```
+Assigned Salesforce Queue Prospect’s assigned Salesforce queue.
+```
+```
+Assigned User The user that the prospect is assigned to.
+```
+```
+Assignment Status Whether a prospect is assigned or not.
+```
+```
+Grade Prospect’s grade.
+```
+```
+List Prospect’s list membership.
+```
+```
+Prospect Custom Field Prospect’s custom field value.
+```
+```
+Prospect Default Field Prospect’s default field value.
+```
+```
+Score Prospect’s score.
+```
+```
+Prospect Tag Prospect’s tags.
+```
+```
+Salesforce Campaign Prospect’s Salesforce campaign membership.
+```
+```
+Salesforce Campaign Status Prospect’s Salesforce campaign status.
+```
+```
+Prospect’s email status: opted out, do not email, hard bounce
+detected, soft bounce detected.
+```
+```
+Prospect Email Status
+```
+```
+Pardot Campaign Prospect’s Account Engagement campaign membership.
+```
+```
+Salesforce Status Prospect’s Salesforce status is Lead, Contact, or Deleted.
+```
+Nurture Leads with Engagement Studio Engagement Program Steps
+
+
+Engagement Program Actions
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+In an engagement program, action steps do something to prospects, such as sending them an
+email or changing a field value.
+```
+Action Definitions
+
+```
+Action What It Does
+```
+```
+Adds the prospect to a list you select. This action
+can be used to add prospects to another
+engagement program’s recipient list.
+```
+```
+Add to List
+```
+```
+Adds the prospect to a Salesforce campaign.
+You can select which Salesforce campaign and
+status to give the prospect.
+```
+```
+Add to Salesforce Campaign*
+```
+```
+Adjusts the prospect score by a selected amount
+or to a designated number.
+```
+```
+Adjust Score
+```
+```
+Apply Tags Applies tags to a prospect.
+```
+```
+Assign to Group Assigns the prospect to a user group.
+```
+```
+Assign to Salesforce queue Assigns the prospect to a Salesforce lead queue.
+```
+```
+Assign to User Assigns the prospect to a user.
+```
+```
+Assigns the prospect to an active Salesforce
+assignment rule. Salesforce takes the prospect
+```
+```
+Assign to Salesforce Active Assignment Rule*
+```
+```
+and creates a lead, and then assigns it based on
+your Salesforce assignment rule.
+```
+```
+Create Salesforce Task* Creates and assigns Salesforce tasks.
+```
+```
+Change Prospect Field Value Clears or changes a prospect field value.
+```
+```
+Triggers an external action to execute a task
+outside of Account Engagement.
+```
+```
+External Actions*
+```
+```
+Notifies a user of a prospect action. You can
+select the assigned user or a specific user.
+```
+```
+Notify User
+```
+```
+Remove from List Removes the prospect from the list you select.
+```
+```
+Remove Tags Removes tags from a prospect.
+```
+```
+Send Email Sends the selected email template to a prospect.
+```
+```
+Send operational emails to all prospects. An
+operational email bypasses a prospect’s opted-in
+```
+```
+Send Operational Email
+```
+```
+status and requires administrator permission to
+send or resume.
+```
+```
+* Requires a verified Salesforce connector.
+```
+Nurture Leads with Engagement Studio Engagement Program Steps
+
+
+### How Wait Periods Work in Engagement Programs
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+When you add or edit a program step, you can choose to hold prospects for a specific period before
+moving them to the next step. How wait periods function in a program depends on whether the
+step is a trigger, action, or rule.
+```
+```
+Wait Options
+The options available for waits depend on the type of step you’re working with. Action and rule steps can be evaluated immediately or
+after a specific period of time. For email send actions only, you can specify the date that you want the email to be sent. If no date is
+specified, the email is scheduled to send immediately when the prospect lands on the step.
+Triggers wait for a prospect to take action, so you have the option to set a specific wait time or a maximum wait time. If the trigger occurs
+within a specific wait time, Engagement Studio still waits the full time before moving the prospect to the next step. If the trigger occurs
+during a maximum wait time, the prospect moves to the next step as soon as the trigger is met.
+This table defines the different wait period options and shows which steps each is available for.
+```
+```
+Wait Option Available In Evaluates
+```
+```
+Immediately Action Steps, Rule Steps When the prospect lands on the step.
+```
+```
+Wait All Steps After the specified amount of time.
+```
+```
+After the specified amount of time. If the
+trigger is met during the wait, the prospect
+moves to the next step immediately.
+```
+```
+Up to a max of Trigger Steps
+```
+```
+On the specified date. If the prospect lands
+on the step after the specified date, the
+```
+```
+On date Send Email Action Step Only
+```
+```
+email isn’t sent to them and they move to
+the next step.
+```
+```
+Pausing an Engagement Program
+If a prospect is waiting on a step when a program is paused, the wait period is also paused. When the program resumes, the prospect
+remains at the step until the wait period ends. This example shows how this process works.
+```
+```
+Example: A prospect lands on an email send action step with a 5-day wait period. On day 2 of the wait, you pause the program
+for 3 days. When you resume the program, the prospect still has the remaining 3 days of their original wait period to complete
+before the email sends to them.
+If you change a program’s time zone and a prospect is waiting on a step when the program is paused, the wait period isn’t paused. If
+the program is set to send emails only during business hours, the program uses the business hours for the new time zone when it
+resumes.
+```
+```
+Example: A prospect lands on an email send action step with a 5-day wait period. On day 2 of the wait, you pause the program
+for 3 days to change the program’s time zone. When you resume the program, the prospect is sent the email immediately because
+the original 5-day wait period has elapsed.
+For date-based wait periods on email send actions, waiting prospects don’t receive the email at all if the program is in a paused state
+on the date specified. When the program resumes, they move to the next step. This example shows how this logic works.
+```
+Nurture Leads with Engagement Studio How Wait Periods Work in Engagement Programs
+
+
+```
+Example: A prospect lands on an email send action step, scheduled to send on May 6. You pause the program from May 4 to
+May 10. Because the program is paused on the scheduled send date, the prospect moves to the next step when the program
+resumes and they don’t receive the May 6 email at all.
+If a wait time is removed while the program is paused, prospect activity is evaluated from the time the prospect landed on the trigger
+step to the amount of time the program was paused. Depending on the circumstances, waiting prospects can automatically be sent
+down the “no” path for the trigger action when the program is resumed. This example shows how this logic works.
+```
+```
+Example: A prospect lands on a trigger step, clicks the trigger link after 3 hours, and enters a 5-day wait. You pause the program,
+remove the wait time, then resume the program after 1 hour. The system evaluates the prospect’s activity for only the first hour
+after they land on the trigger step because that’s how long the program was paused for. The waiting prospect didn’t take any
+action during the first hour, so they’re sent down the “no” path for the trigger action.
+```
+### Engagement Studio FAQ
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+Review frequently asked questions about Engagement Studio.
+What happens if I remove a prospect from a program list?
+If a prospect is removed from a list that a program is using, that prospect stops moving through
+the program. If you remove a prospect from a program’s recipient list, and then add the prospect
+back later, they start where they left off in the program.
+What happens if a prospect opts out of a list that a program is using?
+Opt-out status only applies to marketing emails. If a prospect opts out of a program list, they move through the program but don’t
+receive emails from that program. However, if the prospect is on multiple lists used for the same program, they could still receive program
+emails.
+Can I merge two prospects in the same program?
+Yes, but there are some things to note. When you merge prospects, you choose a primary prospect record. When merged prospects are
+members of the same engagement program, the new primary prospect starts from the step that any of its merged prospects touched
+most recently. Depending on the most recent touchpoint, it’s possible for the primary prospect to skip steps or move through the same
+step twice.
+What if a waiting prospect is suppressed or removed from a list?
+Prospects on a step with a wait who are either suppressed or removed from a list are removed from the program. If a prospect is added
+back to the list or is no longer suppressed, they go to the next step at the originally scheduled date and time.
+What happens to prospects that are waiting on a step when a program is paused and the step is deleted?
+When the program resumes, the prospect is immediately moved to the next step in the program.
+Is it possible for a prospect to land on a step with an email scheduled for a date that has passed?
+Yes. For example, if a prospect is added to a list feeding an older engagement program. If a prospect lands on an email step scheduled
+for a date that passed, the email step skips them and doesn’t send. They immediately move to the next step in the program.
+Can I add prospects to an active program?
+Yes. You can add prospects to a running engagement program at any time. When you add a prospect to the program list, they start the
+program at the beginning.
+Can I change the list for an engagement program?
+Yes. However, make sure that the program is actually running and isn’t still starting up. When you start a program, there’s an initial
+“starting” state. Changing lists while the program is in the process of starting can cause prospects to be removed by mistake or skip
+steps.
+```
+Nurture Leads with Engagement Studio Engagement Studio FAQ
+
+
+```
+How do scheduled sends work with sending emails only during business hours work?
+Prospects are sent the email at the start of business hours for the program’s time zone on the scheduled date. Prospects that arrive on
+the step after the end of business hours on the scheduled date are skipped and don’t receive the email.
+How do waits work with sending emails only during business hours?
+When you customize business hours for sending email, wait periods still count each day. If a wait period expires outside of business
+hours, the email sends at the next available time. For example, if email A sends on Wednesday, and Email B has a three-day wait, the
+wait ends on a Saturday. Email B sends when business hours resume on Monday.
+I just want to send a series of emails to my prospects. Can I do that?
+Yes. You can use Engagement Studio to send a simple series of emails, without branching paths based on engagement or other prospect
+criteria. Build a program made up of only Send Email action steps. You can set a cadence for your emails, or choose the exact dates for
+each email send.
+Why can't I select my Custom Field for use in the Engagement Studio Program?
+The Custom Field of type CRM User is available in other automations but not in Engagement Studio Programs.
+```
+## Build Engagement Studio Programs
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+Before you begin working with programs in Engagement Studio, review our content on how
+Engagement Studio works and come up with a plan for your engagement programs. You can pause
+and edit running programs at any time to adjust your steps or program settings.
+```
+### Create Engagement Programs
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+USER PERMISSIONS
+```
+```
+To create an engagement
+program:
+```
+**-** Account Engagement
+    Administrator or
+    Marketing role
+
+```
+After you segment your audience and finalize the content that drives your marketing, you’re ready
+to create an engagement program.
+```
+**1.** Open Engagement Studio.
+    **-** In Account Engagement, select **Marketing** and then select **Engagement Studio**.
+    **-** In the Lightning app, select **Automations** and then **Engagement Studio**.
+**2.** Click **+ Add Engagement Program**.
+**3.** Enter a name for internal use.
+
+Nurture Leads with Engagement Studio Build Engagement Studio Programs
+
+
+**4.** Choose a folder.
+**5.** If needed, enter a description for internal use.
+**6.** Click **Recipient Lists** , and select a list. You can also select a suppression list to exclude from your program.
+**7.** Save the program.
+After you save your program settings, you’re ready to add steps and build out your prospect paths.
+
+### Add Steps to an Engagement Program
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+USER PERMISSIONS
+```
+```
+To create an engagement
+program:
+```
+**-** Account Engagement
+    Administrator or
+    Marketing role
+
+```
+After you create an engagement program, you can add as many steps and branching paths as you
+need. For best performance, we recommend capping your programs at a maximum of 300 steps.
+```
+**1.** Open Engagement Studio.
+    **-** In Account Engagement, select **Marketing** and then select **Engagement Studio**.
+    **-** In the Lightning app, select **Automations** and then **Engagement Studio**.
+**2.** Open the program that you want to work with. If you’re editing an existing program, click
+    **Pause**.
+**3.** Select the **Build** tab.
+**4.** On the program canvas, use the **+** icon to add steps.
+
+Nurture Leads with Engagement Studio Add Steps to an Engagement Program
+
+
+**5.** Select a step type, such as Action. Then, select an option for that step type, such as Assign to User.
+**6.** Fill in the required fields, and then click **Save**.
+To save time, copy and paste the steps you’ve created that you want to repeat. Click **Select** , choose the steps you want, and then click
+**Copy**. To add the steps, select **Copied Steps**.
+An engagement program can have up to 10 copied steps.
+
+### Test and Start Engagement Programs
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+USER PERMISSIONS
+```
+```
+To test an engagement
+program:
+```
+**-** Account Engagement
+    Administrator or
+    Marketing role
+
+```
+Engagement Studio includes a robust testing experience that lets you navigate steps and preview
+associated assets. Make sure that your program flows and works as you intended, and make needed
+adjustments before you start the program.
+```
+```
+Important: Warnings on engagement programs are dismissible. If you receive a warning,
+carefully review the steps in question to make sure that your program is set up correctly.
+```
+**1.** From the program, click the **Test** tab.
+**2.** To move through the steps, follow the prompts.
+**3.** To restart from a step or preview assets, select one in the log.
+**4.** When you’re satisfied with your tests, click the **Start** button to begin the program.
+Return to your program at any time to check reporting, pause and edit, or check the status of
+prospects in the program.
+
+### Edit Engagement Programs
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+USER PERMISSIONS
+```
+```
+To edit an engagement
+program:
+```
+**-** Account Engagement
+    Administrator or
+    Marketing role
+
+```
+Pause and edit engagement programs to adjust step settings, delete or add steps, update recipient
+lists, and make other changes. When you resume the program, it picks up where it left off.
+```
+**1.** Open an engagement program, and click **Pause**.
+**2.** Click the **Build** tab.
+**3.** Edit and test your program.
+When you’re done editing and testing your program, click **Start** to resume the program.
+
+### Let Prospects Repeat Engagement Programs
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+Remind prospects of recurring events, renewals, and other activities with repeating engagement
+programs. Allowing prospects to enter a program more than one time simplifies your workflow
+and saves you the time of rebuilding duplicate programs.
+All the standard considerations for using engagement programs apply to programs that are
+repeatable. Here are a few additional considerations for working with repeating programs:
+```
+**-** You can have up to 10 scheduled and active repeating programs at a time.
+**-** After you start a repeatable program, you can’t change it back to a one-time program. However, you can edit the re-entry settings.
+
+Nurture Leads with Engagement Studio Test and Start Engagement Programs
+
+
+**-** For programs with limited entries, the start and end steps show you how many prospects completed the program and are eligible
+    to reenter.
+**-** The tooltips show the total number of prospects who completed steps and doesn’t account for repeat prospects. For example, if 5
+    prospects enter a program twice, the number would be 10.
+**-** When you edit re-entry settings for an active program, the new settings apply to prospects currently in the program. For example,
+    if you decrease the max entry limit, prospects on the end step who meet the new limit aren’t eligible to reenter.
+To make a program repeatable, select **Allow prospects to enter a program more than once** when you create or edit a program. Use
+only whole numbers for the days before eligible to reenter setting, and if you limit total program entries.
+
+## Engagement Program Reporting
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+To gauge how well your engagement program nurtures your prospects, review program metrics
+in the Report tab of a running or paused program. Tools are available in the toolbar, the canvas,
+and on individual cards.
+```
+Nurture Leads with Engagement Studio Engagement Program Reporting
+
+
+```
+Each step of your program shows a tooltip with high-level metrics based on prospects who have completed the step. To access more
+detailed metrics, click the step to open its Report Card. The Report Card shows basic metrics including the number of prospects queued
+on the step (1). To see only a specific version of your engagement program, select one from the report view dropdown (2).
+To download your program report as a CSV, click Tools and then CSV Export. The export contains all versions of your program, including
+the total number of prospects started and completed, percentage completed, step type, step name, and asset name.
+On the canvas, you can set a date filter to show data for a specific time frame. When you filter by date, the tooltip and exports show only
+the activities that occurred during that time.
+Here are a few additional things to note about step metrics in Engagement Studio reports.
+```
+**-** Metrics don’t include information for prospects who are currently waiting on that step.
+**-** When you filter by date, the tooltip and exports show only the activities that occurred during that time. For example, you set a date
+    range of Tuesday through Friday to see how prospects engaged with an email you sent on Monday. The statistics show 0 email
+    sends because emails were sent only on Monday, and the report shows the number of opens from Tuesday through Friday.
+**-** Like other email reports in Account Engagement, open and click-through rates are based on delivered emails.
+
+## Tips, Tricks, and Next Steps
+
+```
+EDITIONS
+```
+```
+Available in: All Account
+Engagement Editions
+```
+```
+Now that you’re familiar with all the things Engagement Studio can do, here are a few best practices
+to keep things running smoothly. Additional resources are available to continue your learning and
+optimize your marketing automation strategy.
+```
+Nurture Leads with Engagement Studio Tips, Tricks, and Next Steps
+
+
+### Tips and Tricks
+
+**-** Avoid zero-day waits. A zero-day wait is processed immediately, which for many actions is too fast! To make sure that prospects
+    have time to interact with your assets, allow a wait period of at least one day.
+**-** Don’t start a program with a trigger step. It’s possible to start your program with a trigger step, but you miss some prospects that
+    way. Triggers listen only for activity after a prospect joins a program. We recommend that you start with an action, such as an email
+    send, to get prospects into the program. Then, add your triggers.
+**-** Avoid bottlenecks. Set a reminder to check your reports regularly. Steps in your program can underperform for various reasons, such
+    as the settings for each step or the email content you share. Don’t be afraid to make small adjustments to your program over time.
+
+### Next Steps
+
+**-** Test your knowledge with Engagement Studio (Lightning) and Account Engagement Lead Nurturing modules in Trailhead.
+**-** Browse the Account Engagement Customer Hub for quick links to additional resources.
+**-** Post questions in the B2B Marketing Automation Trailblazer Community.
+**-** Join Ask an Expert sessions.
+**-** Check out Common Engagement Studio templates for advanced program ideas.
+**-** Premier Success customers can ask their specialist for the Expert Coaching Session How to: Account Engagement: Use Engagement
+    Studio.
+
+Nurture Leads with Engagement Studio Tips, Tricks, and Next Steps
+
+
